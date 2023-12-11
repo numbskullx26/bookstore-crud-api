@@ -25,6 +25,19 @@ app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+//test fetch data
+
+app.get("/api/books", async (req, res) => {
+  try {
+    const data = await Book.find({}).limit(2);
+    res.json(data);
+  } catch (error) {
+    res.status(500).json({
+      error: "An error occured while fetching the data.",
+    });
+  }
+});
+
 app.get("/", (req, res) => {
   res.json("hello server!");
 });
