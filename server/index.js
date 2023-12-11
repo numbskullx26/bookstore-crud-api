@@ -24,12 +24,22 @@ connectDB();
 app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use("/uploads", express.static("uploads"));
 
 //test fetch data
 
 app.get("/api/books", async (req, res) => {
   try {
-    const data = await Book.find({}).limit(2);
+    const category = req.query.category;
+    //const stars = req.query.stars;
+
+    const filter = {};
+
+    if (category) {
+      filter.category = category;
+    }
+
+    const data = await Book.find(filter);
     res.json(data);
   } catch (error) {
     res.status(500).json({
