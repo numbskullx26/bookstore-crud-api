@@ -48,6 +48,18 @@ app.get("/api/books", async (req, res) => {
   }
 });
 
+app.get("/api/books/:slug", async (req, res) => {
+  try {
+    const slugParam = req.params.slug;
+
+    const data = await Book.findOne({ slug: slugParam });
+
+    res.json(data);
+  } catch (error) {
+    console.log(error);
+  }
+});
+
 app.get("/", (req, res) => {
   res.json("hello server!");
 });
