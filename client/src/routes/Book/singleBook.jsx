@@ -34,6 +34,16 @@ function singleBook() {
   //   return <div>Rating: {stars}</div>
   // }
 
+  function StarRating({ numberOfStars }) {
+    const stars = [];
+
+    for (let i = 0; i < numberOfStars; i++) {
+      stars.push(<span key={i}>⭐</span>);
+    }
+
+    return <div>Rating : {stars}</div>;
+  }
+
   return (
     <div>
       <Link to={"/books"}>🔙 Books</Link>
@@ -44,13 +54,14 @@ function singleBook() {
             src={`http://localhost:8000/uploads/${data?.thumbnail}`}
             alt={data?.title}
           />
-          <Link to={`/editbook/${data.slug}`}>Edit</Link>
+          <Link to={`/editbook/${data?.slug}`}>Edit</Link>
         </div>
 
         <div className="col-2">
           <h1>{data?.title}</h1>
           <p>{data?.description}</p>
-          {/* <StarRating numberOfStars={data?.stars} /> */}
+          <p>Stars</p>
+          <StarRating numberOfStars={data?.stars} />
 
           <p>Category</p>
           <ul>

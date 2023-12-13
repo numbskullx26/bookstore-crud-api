@@ -68,6 +68,24 @@ app.get("*", (req, res) => {
   res.sendStatus(404);
 });
 
+app.post("/api/books", async (req, res) => {
+  try {
+    const newBook = new Book({
+      title: req.body.title,
+      slug: req.body.slug,
+      description: req.body.description,
+      stars: req.body.stars,
+      category: req.body.category,
+    });
+
+    await Book.create(newBook);
+
+    res.json("Data submitted successfully!");
+  } catch (error) {
+    console.log(error);
+  }
+});
+
 app.listen(PORT, (req, res) => {
   console.log(`Server running on Port : ${PORT}`);
 });

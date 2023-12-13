@@ -42,6 +42,7 @@ function Book() {
         This is where we use NodeJs, MongoDB and Express to grab some data. The
         data below is pulled from a MongoDB database itself.
       </p>
+      <Link to="/createBook">+ Add new book</Link>
       <h1>Fetch Example</h1>
       {/* <pre>{JSON.stringify(data, null, 2)}</pre> */}
 
