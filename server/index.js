@@ -86,6 +86,31 @@ app.post("/api/books", async (req, res) => {
   }
 });
 
+app.put("/api/books", async (req, res) => {
+  try {
+    const bookId = req.body.bookId;
+
+    const updatedBook = {
+      title: req.body.title,
+      slug: req.body.slug,
+      description: req.body.description,
+      stars: req.body.stars,
+      category: req.body.category,
+    };
+
+    if (req.file) {
+      updatedBook.thumbnail = req.file.filename;
+    }
+
+    await Book.findByIdAndUpdate(bookId, updatedBook);
+    res.json("Data Submitted!");
+  } catch (error) {
+    res.status(500).json({
+      error: "An error occured while fetching the books.",
+    });
+  }
+});
+
 app.listen(PORT, (req, res) => {
   console.log(`Server running on Port : ${PORT}`);
 });
