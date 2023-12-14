@@ -134,6 +134,17 @@ app.put("/api/books", async (req, res) => {
   }
 });
 
+app.delete("/api/books/:id", async (req, res) => {
+  const bookId = req.params.id;
+
+  try {
+    await Book.deleteOne({ _id: bookId });
+    res.json("How dare you!" + req.body.bookId);
+  } catch (error) {
+    res.json(error);
+  }
+});
+
 app.listen(PORT, (req, res) => {
   console.log(`Server running on Port : ${PORT}`);
 });
