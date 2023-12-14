@@ -22,16 +22,23 @@ The MERN Stack Bookstore is a web application that allows users to manage a coll
    ```bash
    git clone https://github.com/numbskullx26/bookstore-crud-api.git
 
+
+
 2. **Navigate to the Project Directory:**
 
 ```bash
 cd bookstore-crud-api
 ```
+
+
 3. Install Dependencies:
 
 ```bash
 npm install
 ```
+
+
+
 4. Configure Environment Variables:
 
 Create a .env file in the root directory.
@@ -41,11 +48,15 @@ Add the following variables:
 REACT_APP_API_URL=http://localhost:5000/api
 REACT_APP_SECRET_KEY=your_secret_key
 ```
+
+
 5. Run the Application:
 
 ```bash
 npm run dev
 ```
+
+
 
 6. Access the Application:
 Open your browser and navigate to http://localhost:3000.
