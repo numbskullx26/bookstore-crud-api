@@ -78,7 +78,20 @@ app.post("/register", async (req, res) => {
   }
 });
 
-// app.post("/login",)
+app.post("/login", (req, res) => {
+  const { email, password } = req.body;
+  EmployeeModel.findOne({ email: email }).then((user) => {
+    if (user) {
+      if (user.password === password) {
+        res.status(200).json("Success");
+      } else {
+        res.json("the password is incorrect");
+      }
+    } else {
+      res.json("the user does not exist");
+    }
+  });
+});
 
 app.get("/api/books/:slug", async (req, res) => {
   try {

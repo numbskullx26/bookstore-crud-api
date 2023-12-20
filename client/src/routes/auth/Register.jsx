@@ -13,7 +13,7 @@ function Signup() {
     axios
       .post("http://localhost:8000/register", { name, email, password })
       .then((result) => {
-        navigate("/login");
+        navigate("/");
         console.log(result);
       })
       .catch((err) => console.log(err));
