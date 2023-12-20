@@ -7,6 +7,8 @@ import Book from "./routes/Book/book";
 import SingleBook from "./routes/Book/singleBook";
 import CreateBook from "./routes/Book/createBook";
 import EditBook from "./routes/Book/editBook";
+import Login from "./routes/auth/Login";
+import Register from "./routes/auth/Register";
 
 function App() {
   return (
@@ -19,6 +21,8 @@ function App() {
         <Route path="/books/:slug" element={<SingleBook />} />
         <Route path="/createBook" element={<CreateBook />} />
         <Route path="/editBook/:slug" element={<EditBook />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
       </Routes>
       <Footer />
     </BrowserRouter>

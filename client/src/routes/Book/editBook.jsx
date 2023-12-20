@@ -194,4 +194,3 @@ function editBook() {
 }
 
 export default editBook;
-    
