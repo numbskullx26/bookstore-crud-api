@@ -3,6 +3,8 @@ const cors = require("cors");
 const express = require("express");
 const mongoose = require("mongoose");
 const Book = require("./models/Books");
+const EmployeeModel = require("./models/Employee");
+const bcryptjs = require("bcryptjs");
 
 const app = express();
 const PORT = process.env.PORT || 8000;
@@ -47,6 +49,36 @@ app.get("/api/books", async (req, res) => {
     });
   }
 });
+
+// app.post("/register", (req, res) => {
+//   EmployeeModel.create(req.body)
+//     .then((employees) => res.json(employees))
+//     .catch((err) => res.json(err));
+// });
+
+app.post("/register", async (req, res) => {
+  console.log("req = ", req.body);
+  const { name, email, password } = req.body;
+
+  try {
+    const user = await EmployeeModel.findOne({ name: name });
+    if (user) {
+      res.json("User already exists!");
+    }
+    const hashedPassword = bcryptjs.hashSync(password, 10);
+    const newUser = await EmployeeModel({
+      name,
+      email,
+      password: hashedPassword,
+    });
+    const response = await newUser.save();
+    res.json(response);
+  } catch (err) {
+    console.log(err);
+  }
+});
+
+// app.post("/login",)
 
 app.get("/api/books/:slug", async (req, res) => {
   try {

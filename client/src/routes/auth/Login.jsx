@@ -10,11 +10,11 @@ function Signup() {
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .post("http://localhost:3001/login", { email, password })
+      .post("http://localhost:8000/login", { email, password })
       .then((result) => {
         console.log(result);
         if (result.data === "Success") {
-          navigate("/home");
+          navigate("/");
         }
       })
       .catch((err) => console.log(err));
@@ -53,7 +53,13 @@ function Signup() {
           <button type="submit" className="btn btn-success w-100 rounded-0">
             Login
           </button>
-          <p>Already have an account?</p>
+          <p>Dont have an account?</p>
+          <Link
+            to="/register"
+            className="btn btn-default border w-100 bg-light rounded-0 text-decoration-none"
+          >
+            Register
+          </Link>
           {/* <Link
             to="/login"
             className="btn btn-default border w-100 bg-light rounded-0 text-decoration-none"
